@@ -46,7 +46,7 @@ class TweetContainer extends React.Component {
           <img src={require('../public/favicon.ico')} alt="react-icon"/>
         </Link>
         <h1>Trump Tweets</h1>
-        {tweets ? (
+        {tweets.length > 0 ? (
           <TweetList
             tweets={tweets}
             deleteTweet={deleteTweet}/>
