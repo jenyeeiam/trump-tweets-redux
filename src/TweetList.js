@@ -5,8 +5,8 @@ class TweetList extends React.Component {
     const { tweets, deleteTweet } = this.props;
     return (
       <ol>
-        {tweets.map(tweet => (
-          <li key={tweet.id}>
+        {tweets.map((tweet, index) => (
+          <li key={index}>
             {tweet.text}
             <button onClick={() => {deleteTweet(tweet.id)}}>Delete</button>
           </li>

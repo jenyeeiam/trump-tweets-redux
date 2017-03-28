@@ -4,9 +4,7 @@ import { findIndex } from 'lodash'
 function tweets(state = [], action) {
   switch (action.type) {
     case 'GET_ALL_TWEETS':
-      var allTweets = state.concat(action.tweets);
-      // Return only 20 tweets to render
-      return allTweets.slice(allTweets.length - 20, allTweets.length)
+      return state.concat(action.tweets);
     case 'DELETE_TWEET':
       var index = findIndex(state, (tweet) => {
         return tweet.id === action.tweet_id
