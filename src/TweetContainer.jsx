@@ -1,17 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import ajax from 'superagent';
 import Actions from './actions';
 import TweetList from './TweetList';
 
 function mapDispatchToProps(dispatch){
   return {
-    sendTweetsToStore() {
+    getAllTweets() {
       ajax
         .get('http://localhost:4000')
         .end((err, res) => {
           if (err || !res.ok) {
-            console.log('error!!!!!!', err);
+            console.log('Error in fetching tweets', err);
             return
           } else {
             dispatch(Actions.getTweets(res.body))
@@ -34,13 +35,16 @@ function mapStateToProps(state) {
 class TweetContainer extends React.Component {
 
   componentDidMount() {
-    this.props.sendTweetsToStore();
+    this.props.getAllTweets();
   }
 
   render() {
     const { tweets, deleteTweet } = this.props;
     return(
       <div>
+        <Link to='/'>
+          <img src={require('../public/favicon.ico')} alt="react-icon"/>
+        </Link>
         <h1>Trump Tweets</h1>
         {tweets ? (
           <TweetList
